@@ -1242,6 +1242,17 @@ footer {
   </div>
 </footer>
 
+<!-- POPUP -->
+<div id="popup-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:1000;align-items:center;justify-content:center;backdrop-filter:blur(4px);">
+  <div style="background:#161616;border:1px solid rgba(255,68,68,0.3);border-radius:20px;padding:48px 40px;max-width:480px;width:90%;text-align:center;position:relative;">
+    <button onclick="document.getElementById('popup-overlay').style.display='none'" style="position:absolute;top:16px;right:20px;background:none;border:none;color:rgba(255,255,255,0.4);font-size:24px;cursor:pointer;line-height:1;">×</button>
+    <div style="display:inline-block;font-family:'Unbounded',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;background:rgba(255,68,68,0.12);color:#ff4444;border:1px solid rgba(255,68,68,0.25);padding:6px 16px;border-radius:40px;margin-bottom:24px;">🏆 Розыгрыш</div>
+    <h2 style="font-family:'Unbounded',sans-serif;font-size:clamp(20px,3vw,28px);font-weight:900;letter-spacing:-0.02em;line-height:1.1;color:#fff;margin-bottom:24px;">ЗАБЕРИ СВОЙ БИЛЕТ НА<br><span style="color:#ff4444;">КРИПТО-САММИТ 2026</span></h2>
+    <a href="#bonuses" onclick="document.getElementById('popup-overlay').style.display='none'" style="display:block;background:#c8f135;color:#000;font-family:'Unbounded',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.05em;padding:16px 32px;border-radius:8px;text-decoration:none;margin-bottom:16px;">УЧАСТВОВАТЬ В РОЗЫГРЫШЕ →</a>
+    <a href="#bonuses" onclick="document.getElementById('popup-overlay').style.display='none'" style="font-size:13px;color:rgba(255,255,255,0.4);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.2);">Подробнее об условиях</a>
+  </div>
+</div>
+
 <script>
 function toggleProg(trigger) {
   const item = trigger.closest('.prog-item');
@@ -1251,6 +1262,9 @@ function toggleFaq(trigger) {
   const item = trigger.closest('.faq-item');
   item.classList.toggle('open');
 }
+setTimeout(function() {
+  document.getElementById('popup-overlay').style.display = 'flex';
+}, 8000);
 </script>
 </body>
 </html>
