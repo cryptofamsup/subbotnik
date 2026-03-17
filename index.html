@@ -258,22 +258,6 @@ nav {
   flex: 1;
 }
 
-.hero-bg-text {
-  position: absolute;
-  bottom: -60px;
-  left: -20px;
-  right: 0;
-  font-family: 'Unbounded', sans-serif;
-  font-size: clamp(120px, 18vw, 220px);
-  font-weight: 900;
-  color: rgba(255,255,255,0.02);
-  letter-spacing: -0.04em;
-  line-height: 1;
-  white-space: nowrap;
-  user-select: none;
-  pointer-events: none;
-}
-
 .hero-label {
   font-family: 'Unbounded', sans-serif;
   font-size: clamp(32px, 5vw, 64px);
@@ -425,7 +409,6 @@ section { border-bottom: 1px solid var(--border); }
 
 /* ─── PROGRAM ─── */
 .prog-accordion { display: flex; flex-direction: column; }
-
 .prog-item { border-bottom: 1px solid var(--border); overflow: hidden; }
 
 .prog-trigger {
@@ -708,6 +691,7 @@ footer {
   .pain-row:last-child { border-bottom: none; }
   .details-grid { grid-template-columns: repeat(2, 1fr); }
   .detail-cell { padding: 20px; }
+  .prog-points { grid-template-columns: 1fr; }
   .prog-body { padding: 0 0 24px 0; }
   .hero-desc { font-size: 9px; }
   .cta-inner { padding: 80px 20px; }
@@ -723,7 +707,12 @@ footer {
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">KRIPTO<span>ROMM</span></a>
+  <div style="display:flex;flex-direction:column;gap:6px;">
+    <a href="#" class="nav-logo">KRIPTO<span>ROMM</span></a>
+    <a href="https://t.me/W3Belarus" target="_blank">
+      <img src="logo-w3b.png" alt="W3B Ai Community Belarus" style="height:18px;opacity:0.7;transition:opacity 0.2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.7">
+    </a>
+  </div>
   <ul class="nav-links">
     <li><a href="#program">Программа</a></li>
     <li><a href="#pain">О чём</a></li>
@@ -1070,7 +1059,7 @@ footer {
           <span class="faq-q">Есть ли скидка для тех, кто был на Крипто-Субботнике #1?</span>
           <span class="faq-icon">+</span>
         </div>
-        <div class="faq-body">Да. Если ты был на Крипто-Субботнике  — твоя скидка 5 BYN. Напиши нам при покупке.</div>
+        <div class="faq-body">Да. Если ты был на Крипто-Субботнике #1 — твоя скидка 5 BYN. Напиши нам при покупке.</div>
       </div>
       <div class="faq-item">
         <div class="faq-trigger" onclick="toggleFaq(this)">
