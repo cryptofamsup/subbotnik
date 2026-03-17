@@ -97,6 +97,17 @@ nav {
   overflow: hidden;
   border-bottom: 1px solid var(--border);
   text-align: center;
+  background-image: url('hero-bg.jpg');
+  background-size: cover;
+  background-position: center top;
+}
+
+#hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(10,10,10,0.75);
+  z-index: 1;
 }
 
 .hero-center {
