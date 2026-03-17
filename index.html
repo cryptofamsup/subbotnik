@@ -83,8 +83,14 @@ nav {
   border-radius: 6px;
   text-decoration: none;
   transition: opacity 0.2s;
+  animation: pulse-btn 2s ease-in-out infinite;
 }
-.nav-cta:hover { opacity: 0.85; }
+.nav-cta:hover { opacity: 0.85; animation: none; }
+
+@keyframes pulse-btn {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(200,241,53,0.5); }
+  50% { box-shadow: 0 0 0 10px rgba(200,241,53,0); }
+}
 
 /* ─── HERO ─── */
 #hero {
@@ -768,11 +774,11 @@ footer {
   <ul class="nav-links">
     <li><a href="#program">Программа</a></li>
     <li><a href="#pain">О чём</a></li>
-    <li><a href="#details">Детали</a></li>
+    <li><a href="#tickets">Детали</a></li>
     <li><a href="#bonuses">Розыгрыш</a></li>
     <li><a href="#faq">Вопросы</a></li>
   </ul>
-  <a href="#details" class="nav-cta">ПРИНЯТЬ УЧАСТИЕ</a>
+  <a href="#tickets" class="nav-cta">ПРИНЯТЬ УЧАСТИЕ</a>
 </nav>
 
 <!-- HERO -->
@@ -783,7 +789,7 @@ footer {
     <div class="hero-num-line">28 марта 2026 · Минск</div>
     <h1 class="hero-subtitle">ГОЛОВА<br>ТРЕЙДЕРА</h1>
     <p class="hero-desc">Офлайн мастер-класс по трейдингу. Риск-менеджмент,<br>психология и дисциплина — всё, что отличает 10% прибыльных трейдеров.</p>
-    <a href="#details" class="btn btn-accent" style="font-size:13px;padding:16px 40px;">ПРИНЯТЬ УЧАСТИЕ →</a>
+    <a href="#tickets" class="btn btn-accent" style="font-size:13px;padding:16px 40px;">ПРИНЯТЬ УЧАСТИЕ →</a>
   </div>
 </section>
 
@@ -987,6 +993,13 @@ footer {
       <p class="gifts-hero-sub">Все кто приходит на мастер-класс — уходят не с пустыми руками. Подарки получают все без исключения.</p>
       <div class="gifts-cards-row">
         <div class="gifts-item">
+          <div class="gifts-item-icon gifts-item-photo" style="background-image:url('gift-summit.jpg');"></div>
+          <div>
+            <div class="gifts-item-name">Розыгрыш 3 билетов на Crypto Summit 2026</div>
+            <div class="gifts-item-desc">Определим онлайн 21.03 в 22:00 в канале W3B</div>
+          </div>
+        </div>
+        <div class="gifts-item">
           <div class="gifts-item-icon gifts-item-photo" style="background-image:url('gift-merch.jpg');"></div>
           <div>
             <div class="gifts-item-name">Мерч от партнёров</div>
@@ -1014,19 +1027,14 @@ footer {
             <div class="gifts-item-desc">Эксклюзивные бонусы от одной из крупнейших криптовалютных бирж</div>
           </div>
         </div>
-        <div class="gifts-item">
-          <div class="gifts-item-icon gifts-item-photo" style="background-image:url('gift-summit.jpg');"></div>
-          <div>
-            <div class="gifts-item-name">Розыгрыш 3 билетов на Crypto Summit 2026</div>
-            <div class="gifts-item-desc">Определим онлайн 21.03 в 22:00 в канале W3B</div>
-          </div>
-        </div>
       </div>
+    </div>
+    <div style="text-align:center;margin-top:40px;">
+      <a href="#tickets" class="btn btn-accent" style="font-size:13px;padding:16px 40px;">ПРИНЯТЬ УЧАСТИЕ →</a>
     </div>
   </div>
 </section>
 
-<!-- DETAILS -->
 <section id="details">
   <div class="section-wrap">
     <div class="s-header">
@@ -1119,6 +1127,7 @@ footer {
   </div>
 </section>
 
+    <div id="tickets"></div>
     <h3 style="font-family:'Unbounded',sans-serif;font-size:clamp(22px,3vw,36px);font-weight:800;letter-spacing:-0.02em;margin-bottom:24px;">ВЫБЕРИ СВОЙ БИЛЕТ</h3>
     <div class="pricing-grid">
       <div class="pricing-card">
@@ -1202,7 +1211,7 @@ footer {
       <div class="cta-eyebrow">Осталось мало мест · 28 марта · Минск</div>
       <h2 class="cta-title">ВОЙДИ В<br><span>10%</span></h2>
       <p class="cta-sub">Живой мастер-класс с Романом Мартыненко. Всё что нужно знать о голове трейдера — в одном дне.</p>
-      <a href="#details" class="btn btn-accent" style="font-size:13px;padding:18px 40px;">ПРИСОЕДИНИТЬСЯ →</a>
+      <a href="#tickets" class="btn btn-accent" style="font-size:13px;padding:18px 40px;">ПРИСОЕДИНИТЬСЯ →</a>
     </div>
   </div>
 </section>
