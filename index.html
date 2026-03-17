@@ -681,11 +681,14 @@ footer {
   .pain-row:nth-child(even) { padding-left: 0; }
   .pain-row:nth-last-child(-n+2) { border-bottom: 1px solid var(--border); }
   .pain-row:last-child { border-bottom: none; }
-  .details-grid { grid-template-columns: repeat(2, 1fr); }
+  .details-grid {
+    grid-template-columns: repeat(2, 1fr);
+    border-radius: 12px;
+  }
   .detail-cell:nth-child(2) { border-right: none; }
   .detail-cell:nth-child(3) { border-top: 1px solid var(--border); }
   .detail-cell:nth-child(4) { border-top: 1px solid var(--border); border-right: none; }
-  .prog-points { grid-template-columns: 1fr; }
+  .detail-cell { padding: 20px; }
   .prog-body { padding: 0 0 24px 0; }
   footer { padding: 24px 20px; }
   .cta-inner { padding: 80px 20px; }
