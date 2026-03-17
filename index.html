@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>КРИПТО-СУББОТНИК #2 — Роман Мартыненко</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Unbounded:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+:root {
+  --bg: #0a0a0a;
+  --surface: #111111;
+  --card: #161616;
+  --border: rgba(255,255,255,0.08);
+  --border-hover: rgba(255,255,255,0.18);
+  --accent: #c8f135;
+  --accent-dim: rgba(200,241,53,0.12);
+  --text: #ffffff;
+  --muted: rgba(255,255,255,0.4);
+  --muted2: rgba(255,255,255,0.6);
+  --red: #ff4444;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(20px);
+  background: rgba(10,10,10,0.85);
+  padding: 0 40px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--text);
+  text-decoration: none;
+}
+.nav-logo span { color: var(--accent); }
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 13px;
+  color: var(--muted2);
+  text-decoration: none;
+  transition: color 0.2s;
+  font-weight: 500;
+}
+.nav-links a:hover { color: var(--text); }
+
+.nav-cta {
+  background: var(--accent);
+  color: #000;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 10px 22px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.nav-cta:hover { opacity: 0.85; }
+
+/* ─── HERO ─── */
+#hero {
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 40px 40px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+}
+
+.hero-center {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px;
+  width: 100%;
+}
+
+/* ─── SPEAKER SECTION ─── */
+#speaker .section-wrap { padding-top: 40px; padding-bottom: 40px; }
+
+.speaker-block {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.speaker-photo-col {
+  position: relative;
+}
+
+.speaker-photo-col img {
+  display: block;
+  width: 100%;
+  max-height: 320px;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.speaker-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.stat-box {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  background: var(--card);
+}
+
+.stat-box-num {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.stat-box-label {
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.speaker-socials {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted2);
+  text-decoration: none;
+  background: var(--card);
+  transition: all 0.2s;
+}
+.social-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.pricing-card {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 36px;
+  background: var(--card);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+
+.pricing-card--accent {
+  border-color: rgba(200,241,53,0.3);
+  background: rgba(200,241,53,0.03);
+}
+
+.pricing-badge {
+  position: absolute;
+  top: -12px;
+  left: 32px;
+  background: var(--accent);
+  color: #000;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 5px 14px;
+  border-radius: 20px;
+}
+
+.pricing-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.pricing-price {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 56px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--text);
+}
+.pricing-price span { color: var(--accent); }
+
+.pricing-desc {
+  font-size: 14px;
+  color: var(--muted2);
+  line-height: 1.6;
+  flex: 1;
+}
+
+@media (max-width: 900px) {
+  .speaker-block { grid-template-columns: 1fr; gap: 40px; }
+  .speaker-photo-col img { max-height: 400px; }
+  .speaker-stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .pricing-grid { grid-template-columns: 1fr; }
+}
+
+.hero-bg-text {
+  position: absolute;
+  bottom: -60px;
+  left: -20px;
+  right: 0;
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(120px, 18vw, 220px);
+  font-weight: 900;
+  color: rgba(255,255,255,0.02);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  white-space: nowrap;
+  user-select: none;
+  pointer-events: none;
+}
+
+.hero-label {
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(32px, 5vw, 64px);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--text);
+  line-height: 1;
+  margin-bottom: 14px;
+  text-align: center;
+  align-self: center;
+}
+
+.hero-num-line {
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(16px, 2vw, 22px);
+  font-weight: 600;
+  color: var(--muted2);
+  letter-spacing: 0.02em;
+  margin-bottom: 32px;
+  text-align: center;
+  align-self: center;
+}
+
+.hero-subtitle {
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(36px, 6vw, 76px);
+  font-weight: 900;
+  line-height: 1.3;
+  letter-spacing: -0.03em;
+  color: var(--accent);
+  margin-bottom: 32px;
+}
+
+.hero-glow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(200,241,53,0.06) 0%, transparent 70%);
+  top: -100px;
+  right: -100px;
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-bottom: 60px;
+}
+
+.hero-desc {
+  font-size: 17px;
+  color: var(--muted2);
+  line-height: 1.7;
+  font-weight: 400;
+  margin-bottom: 36px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 16px 32px;
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+
+.btn-accent {
+  background: var(--accent);
+  color: #000;
+}
+.btn-accent:hover { opacity: 0.88; transform: translateY(-1px); }
+
+.btn-outline {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border-hover);
+}
+.btn-outline:hover { border-color: var(--text); }
+
+.hero-speaker-strip {
+  margin-top: 48px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 40px;
+  width: 100%;
+}
+
+.speaker-info {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.speaker-ava {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1e2820, #0f1a10);
+  border: 2px solid rgba(200,241,53,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.speaker-name-big {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.speaker-handle-small {
+  font-size: 12px;
+  color: var(--accent);
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+.speaker-stat-row {
+  display: flex;
+  gap: 32px;
+}
+
+.s-stat { text-align: center; }
+.s-stat-num {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1;
+}
+.s-stat-label { font-size: 11px; color: var(--muted); font-weight: 500; margin-top: 4px; }
+
+/* ─── SECTION BASE ─── */
+section {
+  border-bottom: 1px solid var(--border);
+}
+
+.section-wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 100px 40px;
+}
+
+.s-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 64px;
+  flex-wrap: wrap;
+}
+
+.s-num {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+.s-title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+
+.s-desc {
+  font-size: 15px;
+  color: var(--muted2);
+  max-width: 360px;
+  line-height: 1.7;
+  padding-top: 12px;
+}
+
+/* ─── PAIN ─── */
+.pain-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+
+.pain-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--border);
+}
+.pain-row:nth-child(odd) { padding-right: 40px; border-right: 1px solid var(--border); }
+.pain-row:nth-child(even) { padding-left: 40px; }
+.pain-row:nth-last-child(-n+2) { border-bottom: none; }
+
+.pain-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--red);
+  flex-shrink: 0;
+  margin-top: 8px;
+}
+
+.pain-text {
+  font-size: 15px;
+  color: var(--muted2);
+  line-height: 1.6;
+  font-weight: 400;
+}
+.pain-text strong { color: var(--text); font-weight: 600; }
+
+/* ─── PROGRAM ─── */
+.prog-accordion {
+  display: flex;
+  flex-direction: column;
+}
+
+.prog-item {
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.prog-trigger {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 28px 0;
+  cursor: pointer;
+  transition: all 0.2s;
+  user-select: none;
+  list-style: none;
+}
+.prog-trigger:hover .prog-name { color: var(--accent); }
+
+.prog-n {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  min-width: 28px;
+}
+
+.prog-name {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  flex: 1;
+  transition: color 0.2s;
+}
+
+.prog-arrow {
+  width: 32px; height: 32px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: all 0.3s;
+  flex-shrink: 0;
+}
+
+.prog-item.open .prog-arrow {
+  background: var(--accent);
+  color: #000;
+  border-color: var(--accent);
+  transform: rotate(45deg);
+}
+
+.prog-body {
+  display: none;
+  padding: 0 0 32px 52px;
+}
+.prog-item.open .prog-body { display: block; }
+
+.prog-points {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 32px;
+}
+
+.prog-point {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--muted2);
+  line-height: 1.5;
+}
+.prog-point::before {
+  content: '—';
+  color: var(--accent);
+  font-weight: 600;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.prop-highlight {
+  margin-top: 40px;
+  border: 1px solid rgba(200,241,53,0.2);
+  border-radius: 12px;
+  padding: 32px 36px;
+  background: rgba(200,241,53,0.03);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.prop-hl-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.prop-hl-icon {
+  font-size: 36px;
+}
+
+.prop-hl-title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+.prop-hl-desc { font-size: 14px; color: var(--muted); }
+
+/* ─── DETAILS ─── */
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 40px;
+}
+
+.detail-cell {
+  padding: 32px 28px;
+  border-right: 1px solid var(--border);
+}
+.detail-cell:last-child { border-right: none; }
+
+.detail-cell-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+.detail-cell-icon { font-size: 20px; margin-bottom: 12px; }
+
+.detail-cell-value {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--text);
+}
+
+.price-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 40px 48px;
+  background: var(--card);
+  flex-wrap: wrap;
+}
+
+.price-big {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 80px;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  color: var(--text);
+}
+
+.price-currency { color: var(--accent); }
+
+.price-divider {
+  width: 1px;
+  height: 80px;
+  background: var(--border);
+}
+
+.price-notes { flex: 1; }
+
+.price-note-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--muted2);
+  margin-bottom: 8px;
+}
+.price-note-line:last-child { margin-bottom: 0; }
+.price-note-line .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+.price-note-line s { color: var(--muted); }
+.price-note-line strong { color: var(--accent); }
+
+.price-cta { margin-left: auto; display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
+
+/* ─── RAFFLE ─── */
+.raffle-card {
+  border: 1px solid rgba(255,68,68,0.2);
+  border-radius: 20px;
+  padding: 60px;
+  background: linear-gradient(135deg, rgba(255,68,68,0.04), transparent);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.raffle-card::before {
+  content: '×3';
+  position: absolute;
+  right: -30px;
+  top: -40px;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 200px;
+  font-weight: 900;
+  color: rgba(255,68,68,0.04);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.raffle-badge {
+  display: inline-block;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: rgba(255,68,68,0.15);
+  color: var(--red);
+  border: 1px solid rgba(255,68,68,0.3);
+  padding: 7px 18px;
+  border-radius: 40px;
+  margin-bottom: 28px;
+}
+
+.raffle-title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(28px, 4vw, 52px);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  margin-bottom: 16px;
+}
+.raffle-title span { color: var(--red); }
+
+.raffle-sub {
+  font-size: 15px;
+  color: var(--muted2);
+  max-width: 460px;
+  margin: 0 auto 48px;
+  line-height: 1.7;
+}
+
+.raffle-steps-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.raffle-step-box {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px 28px;
+  min-width: 180px;
+  text-align: left;
+  background: var(--card);
+  transition: border-color 0.2s;
+}
+.raffle-step-box:hover { border-color: rgba(255,68,68,0.25); }
+
+.rs-num {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 36px;
+  font-weight: 900;
+  color: rgba(255,68,68,0.25);
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.rs-text {
+  font-size: 13px;
+  color: var(--muted2);
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.raffle-date {
+  font-size: 14px;
+  color: var(--muted);
+}
+.raffle-date strong { color: var(--text); }
+
+/* ─── BONUSES ─── */
+.bonuses-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.bonus-card {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 32px;
+  background: var(--card);
+  transition: border-color 0.25s, transform 0.25s;
+}
+.bonus-card:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-3px);
+}
+
+.bonus-logo-wrap {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+.bw-mexc { background: #0ecb81; color: #000; font-family: 'Unbounded', sans-serif; font-size: 9px; font-weight: 900; }
+.bw-up { background: linear-gradient(135deg, var(--accent), #8bc34a); color: #000; font-family: 'Unbounded', sans-serif; font-size: 9px; font-weight: 900; }
+.bw-chat { background: rgba(0,136,255,0.15); color: #3b9dff; }
+
+.bonus-title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+}
+.bonus-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* ─── GIFTS HERO ─── */
+.gifts-hero-card {
+  border: 1px solid rgba(255,68,68,0.2);
+  border-radius: 20px;
+  padding: 60px;
+  background: linear-gradient(135deg, rgba(255,68,68,0.04), transparent);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.gifts-hero-card::before {
+  content: '🎁';
+  position: absolute;
+  right: -20px;
+  top: -40px;
+  font-size: 200px;
+  opacity: 0.04;
+  line-height: 1;
+  pointer-events: none;
+}
+.gifts-hero-badge {
+  display: inline-block;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: rgba(255,68,68,0.12);
+  color: var(--red);
+  border: 1px solid rgba(255,68,68,0.25);
+  padding: 7px 18px;
+  border-radius: 40px;
+  margin-bottom: 28px;
+}
+.gifts-hero-title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(28px, 4vw, 52px);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  margin-bottom: 16px;
+  color: var(--text);
+}
+.gifts-hero-title span { color: var(--red); }
+.gifts-hero-sub {
+  font-size: 15px;
+  color: var(--muted2);
+  max-width: 460px;
+  margin: 0 auto 48px;
+  line-height: 1.7;
+}
+.gifts-cards-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 32px;
+  text-align: left;
+}
+.gifts-item {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  background: var(--card);
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  transition: border-color 0.2s;
+}
+.gifts-item:hover { border-color: var(--border-hover); }
+.gifts-item-icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.05);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.gifts-item-photo {
+  background-size: cover;
+  background-position: center;
+}
+.gifts-item-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.4;
+  margin-bottom: 4px;
+}
+.gifts-item-desc {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.gifts-raffle-note {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+
+/* ─── FAQ ─── */
+.faq-list { display: flex; flex-direction: column; }
+
+.faq-item {
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.faq-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 0;
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+  gap: 16px;
+}
+
+.faq-q {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--muted2);
+  transition: color 0.2s;
+  flex: 1;
+}
+.faq-item.open .faq-q { color: var(--text); }
+.faq-trigger:hover .faq-q { color: var(--text); }
+
+.faq-icon {
+  width: 28px; height: 28px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+  color: var(--muted);
+  flex-shrink: 0;
+  transition: all 0.3s;
+}
+.faq-item.open .faq-icon {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: rotate(45deg);
+}
+
+.faq-body {
+  display: none;
+  padding: 0 0 24px 0;
+  font-size: 14px;
+  color: var(--muted2);
+  line-height: 1.75;
+  max-width: 680px;
+}
+.faq-item.open .faq-body { display: block; }
+
+/* ─── CTA ─── */
+#cta-final {
+  border-bottom: none;
+}
+
+.cta-inner {
+  text-align: center;
+  padding: 120px 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.cta-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(200,241,53,0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.cta-eyebrow {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.cta-title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(44px, 7vw, 88px);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  margin-bottom: 24px;
+}
+.cta-title span { color: var(--accent); }
+
+.cta-sub {
+  font-size: 16px;
+  color: var(--muted2);
+  max-width: 420px;
+  margin: 0 auto 40px;
+  line-height: 1.7;
+}
+
+.cta-price-note {
+  margin-top: 20px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.cta-price-note strong { color: var(--accent); }
+
+/* ─── FOOTER ─── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 32px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  max-width: 100%;
+}
+
+.footer-logo {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+}
+.footer-logo span { color: var(--accent); }
+
+.footer-copy { font-size: 12px; color: var(--muted); }
+
+.footer-links {
+  display: flex;
+  gap: 24px;
+}
+.footer-links a {
+  font-size: 12px;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--text); }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  #hero { padding: 100px 20px 0; }
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-photo-wrap { display: none; }
+  .hero-content { padding-bottom: 48px; }
+  .section-wrap { padding: 64px 20px; }
+  .s-header { flex-direction: column; }
+  .pain-list { grid-template-columns: 1fr; }
+  .pain-row:nth-child(odd) { border-right: none; padding-right: 0; }
+  .pain-row:nth-child(even) { padding-left: 0; }
+  .pain-row:nth-last-child(-n+2) { border-bottom: 1px solid var(--border); }
+  .pain-row:last-child { border-bottom: none; }
+  .details-grid { grid-template-columns: repeat(2, 1fr); }
+  .detail-cell:nth-child(2) { border-right: none; }
+  .detail-cell:nth-child(3) { border-top: 1px solid var(--border); }
+  .detail-cell:nth-child(4) { border-top: 1px solid var(--border); border-right: none; }
+  .price-row { padding: 32px; }
+  .price-big { font-size: 56px; }
+  .price-cta { margin-left: 0; width: 100%; align-items: flex-start; }
+  .bonuses-grid { grid-template-columns: 1fr; }
+  .raffle-card { padding: 40px 24px; }
+  .prog-points { grid-template-columns: 1fr; }
+  .prog-body { padding: 0 0 24px 0; }
+  footer { padding: 24px 20px; }
+  .cta-inner { padding: 80px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">KRIPTO<span>ROMM</span></a>
+  <ul class="nav-links">
+    <li><a href="#program">Программа</a></li>
+    <li><a href="#pain">О чём</a></li>
+    <li><a href="#details">Детали</a></li>
+    <li><a href="#raffle">Розыгрыш</a></li>
+    <li><a href="#faq">Вопросы</a></li>
+  </ul>
+  <a href="#details" class="nav-cta">ПРИНЯТЬ УЧАСТИЕ</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-bg-text">СУББОТНИК</div>
+  <div class="hero-center">
+    <div class="hero-label">Крипто-субботник</div>
+    <div class="hero-num-line">28 марта 2026 · Минск</div>
+    <h1 class="hero-subtitle">ГОЛОВА<br>ТРЕЙДЕРА</h1>
+    <p class="hero-desc">Офлайн мастер-класс по трейдингу. Риск-менеджмент,<br>психология и дисциплина — всё, что отличает 10% прибыльных трейдеров.</p>
+    <a href="#details" class="btn btn-accent" style="font-size:13px;padding:16px 40px;">ПРИНЯТЬ УЧАСТИЕ →</a>
+  </div>
+</section>
+
+<!-- СПИКЕР -->
+<section id="speaker">
+  <div class="section-wrap">
+    <div class="speaker-block">
+      <div class="speaker-photo-col">
+        <img src="roman-cut.jpg" alt="Роман Мартыненко">
+      </div>
+      <div class="speaker-info-col">
+        <div class="s-num">СПИКЕР</div>
+        <h2 class="s-title" style="margin:12px 0 8px;">Роман<br>Мартыненко</h2>
+        <div style="font-size:14px;color:var(--accent);font-weight:600;margin-bottom:24px;">@KRIPTOROMM</div>
+        <p style="font-size:15px;color:var(--muted2);line-height:1.7;margin-bottom:36px;max-width:420px;">Криптотрейдер и преподаватель. Обучает системной торговле с упором на риск-менеджмент и психологию трейдера. Автор YouTube-канала KRIPTOROMM.</p>
+        <div class="speaker-stats-grid">
+          <div class="stat-box">
+            <div class="stat-box-num">5+</div>
+            <div class="stat-box-label">лет в трейдинге</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-box-num">200+</div>
+            <div class="stat-box-label">учеников</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-box-num">43К</div>
+            <div class="stat-box-label">подписчиков</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-box-num">Live</div>
+            <div class="stat-box-label">формат</div>
+          </div>
+        </div>
+        <div class="speaker-socials">
+          <a href="https://t.me/kriptoromm" target="_blank" class="social-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.32 13.617l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.828.942z"/></svg>
+            Telegram
+          </a>
+          <a href="https://www.youtube.com/@KRIPTOROMM" target="_blank" class="social-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+            YouTube
+          </a>
+          <a href="https://www.instagram.com/kriptoromm" target="_blank" class="social-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+            Instagram
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAM -->
+<section id="program">
+  <div class="section-wrap">
+    <div class="s-header">
+      <div>
+        
+        <h2 class="s-title">ЧТО<br>РАЗБЕРЁМ</h2>
+      </div>
+      <p class="s-desc">Конкретные инструменты без воды. Живой разбор ситуаций прямо из зала.</p>
+    </div>
+
+    <div class="prog-accordion">
+
+      <div class="prog-item open">
+        <div class="prog-trigger" onclick="toggleProg(this)">
+          <span class="prog-n">01</span>
+          <span class="prog-name">Почему анализ не спасает — и что реально спасает</span>
+          <span class="prog-arrow">+</span>
+        </div>
+        <div class="prog-body">
+          <div class="prog-points">
+            <div class="prog-point">Психологические ловушки трейдера</div>
+            <div class="prog-point">Что реально отличает прибыльных от убыточных</div>
+            <div class="prog-point">Почему хороший анализ = убыток</div>
+            <div class="prog-point">Фреймворк принятия решений</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="prog-item">
+        <div class="prog-trigger" onclick="toggleProg(this)">
+          <span class="prog-n">02</span>
+          <span class="prog-name">Как не слить месяц за одну серию стопов</span>
+          <span class="prog-arrow">+</span>
+        </div>
+        <div class="prog-body">
+          <div class="prog-points">
+            <div class="prog-point">Протокол поведения в просадке</div>
+            <div class="prog-point">Риск-менеджмент на уровне серий сделок</div>
+            <div class="prog-point">Как остановиться вовремя</div>
+            <div class="prog-point">Дневные лимиты и правила восстановления</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="prog-item">
+        <div class="prog-trigger" onclick="toggleProg(this)">
+          <span class="prog-n">03</span>
+          <span class="prog-name">Правильный фрейм: убытки — не ошибки</span>
+          <span class="prog-arrow">+</span>
+        </div>
+        <div class="prog-body">
+          <div class="prog-points">
+            <div class="prog-point">Статистическое мышление трейдера</div>
+            <div class="prog-point">Как разделить процесс и результат</div>
+            <div class="prog-point">Журналирование и разбор сделок</div>
+            <div class="prog-point">Когда стоп — это не проигрыш</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="prog-item">
+        <div class="prog-trigger" onclick="toggleProg(this)">
+          <span class="prog-n">04</span>
+          <span class="prog-name">Как заставить страх и жадность работать на тебя</span>
+          <span class="prog-arrow">+</span>
+        </div>
+        <div class="prog-body">
+          <div class="prog-points">
+            <div class="prog-point">Механизм возникновения эмоций в сделке</div>
+            <div class="prog-point">Торговые правила как защита от себя</div>
+            <div class="prog-point">Использование эмоций как сигнал</div>
+            <div class="prog-point">Дисциплина в реальных условиях</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="prog-item">
+        <div class="prog-trigger" onclick="toggleProg(this)">
+          <span class="prog-n">05</span>
+          <span class="prog-name">Работает ли твоя стратегия — или это везение</span>
+          <span class="prog-arrow">+</span>
+        </div>
+        <div class="prog-body">
+          <div class="prog-points">
+            <div class="prog-point">Как проверить стратегию на выборке</div>
+            <div class="prog-point">Статистика которую нужно считать</div>
+            <div class="prog-point">Когда менять систему, а когда — нет</div>
+            <div class="prog-point">Один инструмент: где ты теряешь деньги</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PAIN -->
+<section id="pain">
+  <div class="section-wrap">
+    <div class="s-header">
+      <div>
+        
+        <h2 class="s-title">ПОЧЕМУ 90%<br>ТЕРЯЮТ ДЕНЬГИ</h2>
+      </div>
+      <p class="s-desc">Большинство сливают не потому что плохо читают графики. Одна жадная сделка перечёркивает месяц работы.</p>
+    </div>
+
+    <div class="pain-list">
+      <div class="pain-row">
+        <div class="pain-dot"></div>
+        <div class="pain-text"><strong>Грамотный анализ не спасает от слива</strong> — и ты не понимаешь почему</div>
+      </div>
+      <div class="pain-row">
+        <div class="pain-dot"></div>
+        <div class="pain-text"><strong>После нескольких стопов подряд</strong> — сливаешь всё что заработал за месяц</div>
+      </div>
+      <div class="pain-row">
+        <div class="pain-dot"></div>
+        <div class="pain-text"><strong>Считаешь убыточные сделки ошибками</strong> — и это мешает двигаться вперёд</div>
+      </div>
+      <div class="pain-row">
+        <div class="pain-dot"></div>
+        <div class="pain-text"><strong>Торгуешь на эмоциях</strong> — страх и жадность управляют позицией вместо тебя</div>
+      </div>
+      <div class="pain-row">
+        <div class="pain-dot"></div>
+        <div class="pain-text"><strong>Не знаешь — работает ли стратегия</strong> или ты просто надеешься на удачу</div>
+      </div>
+      <div class="pain-row">
+        <div class="pain-dot"></div>
+        <div class="pain-text"><strong>Не видишь где теряешь деньги</strong> — и теряешь снова и снова</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GIFTS & RAFFLE -->
+<section id="bonuses">
+  <div class="section-wrap">
+    <div class="gifts-hero-card">
+      <div class="gifts-hero-badge">🎁 Каждый участник получает</div>
+      <h2 class="gifts-hero-title">ПОДАРКИ<br><span>УЧАСТНИКАМ</span></h2>
+      <p class="gifts-hero-sub">Все кто приходит на мастер-класс — уходят не с пустыми руками. Подарки получают все без исключения.</p>
+
+      <div class="gifts-cards-row">
+        <div class="gifts-item">
+          <div class="gifts-item-icon gifts-item-photo" style="background-image:url('gift-merch.jpg');"></div>
+          <div>
+            <div class="gifts-item-name">Мерч от партнёров</div>
+            <div class="gifts-item-desc">Фирменная атрибутика от партнёров мастер-класса</div>
+          </div>
+        </div>
+        <div class="gifts-item">
+          <div class="gifts-item-icon gifts-item-photo" style="background-image:url('gift-mexc.png');"></div>
+          <div>
+            <div class="gifts-item-name">Деньги для торговли от биржи</div>
+            <div class="gifts-item-desc">Бонусный капитал на счету — начни торговать сразу после мастер-класса</div>
+          </div>
+        </div>
+        <div class="gifts-item">
+          <div class="gifts-item-icon gifts-item-photo" style="background-image:url('gift-telegram.jpg');"></div>
+          <div>
+            <div class="gifts-item-name">Закрытый чат KRIPTOROMM</div>
+            <div class="gifts-item-desc">Полезные материалы, разборы сделок и доступ к закрытому сообществу трейдеров</div>
+          </div>
+        </div>
+        <div class="gifts-item">
+          <div class="gifts-item-icon gifts-item-photo" style="background-image:url('gift-mexc.png');"></div>
+          <div>
+            <div class="gifts-item-name">Бонусы от MEXC</div>
+            <div class="gifts-item-desc">Эксклюзивные бонусы от одной из крупнейших криптовалютных бирж</div>
+          </div>
+        </div>
+        <div class="gifts-item">
+          <div class="gifts-item-icon gifts-item-photo" style="background-image:url('gift-upscale.png');"></div>
+          <div>
+            <div class="gifts-item-name">Бонусы от UPSCALE</div>
+            <div class="gifts-item-desc">Специальные условия от проп-трейдинговой платформы UPSCALE</div>
+          </div>
+        </div>
+        <div class="gifts-item">
+          <div class="gifts-item-icon gifts-item-photo" style="background-image:url('gift-summit.jpg');"></div>
+          <div>
+            <div class="gifts-item-name">Розыгрыш 3 билетов на Crypto Summit 2026</div>
+            <div class="gifts-item-desc">Среди всех купивших билет — победителей определяем 21 марта в 22:00</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DETAILS -->
+<section id="details">
+  <div class="section-wrap">
+    <div class="s-header">
+      <div>
+        
+        <h2 class="s-title">КОГДА<br>И ГДЕ</h2>
+      </div>
+      <p class="s-desc">Живой оффлайн-формат. Вопросы в зале. Разбор ваших реальных ситуаций.</p>
+    </div>
+
+    <div class="details-grid">
+      <div class="detail-cell">
+        <div class="detail-cell-label">Дата</div>
+        <div class="detail-cell-icon">📅</div>
+        <div class="detail-cell-value">28 марта 2026<br>Суббота</div>
+      </div>
+      <div class="detail-cell">
+        <div class="detail-cell-label">Время</div>
+        <div class="detail-cell-icon">⏰</div>
+        <div class="detail-cell-value">12:00 – 15:00<br>Сбор с 11:40</div>
+      </div>
+      <div class="detail-cell">
+        <div class="detail-cell-label">Место</div>
+        <div class="detail-cell-icon">📍</div>
+        <div class="detail-cell-value">Horizont Balance Zal<br>Куйбышева, 22, корп. 6</div>
+      </div>
+      <div class="detail-cell">
+        <div class="detail-cell-label">Формат</div>
+        <div class="detail-cell-icon">🎤</div>
+        <div class="detail-cell-value">Живой оффлайн<br>Вопросы из зала</div>
+      </div>
+    </div>
+
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="pricing-label">Стандарт</div>
+        <div class="pricing-price">50 <span>BYN</span></div>
+        <div class="pricing-desc">Просто покупаешь билет и приходишь</div>
+        <a href="https://bezkassira.by/-kripto-subbotnik-2-oflajn-master-klass-s-romanom-martynenko-min-192372/" target="_blank" class="btn btn-outline" style="width:100%;justify-content:center;">ПРИНЯТЬ УЧАСТИЕ →</a>
+      </div>
+      <div class="pricing-card pricing-card--accent">
+        <div class="pricing-badge">Выгоднее</div>
+        <div class="pricing-label">С репостом</div>
+        <div class="pricing-price">40 <span>BYN</span></div>
+        <div class="pricing-desc">Сделай репост анонса в свои соцсети → напиши нам в <a href="https://t.me/andrey_proup" target="_blank" style="color:var(--accent);text-decoration:none;">Telegram</a> → подтверди репост → получи промокод на скидку 10 BYN</div>
+        <a href="https://bezkassira.by/-kripto-subbotnik-2-oflajn-master-klass-s-romanom-martynenko-min-192372/" target="_blank" class="btn btn-accent" style="width:100%;justify-content:center;">ПРИНЯТЬ УЧАСТИЕ →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-wrap">
+    <div class="s-header">
+      <div>
+        
+        <h2 class="s-title">ЧАСТЫЕ<br>ВОПРОСЫ</h2>
+      </div>
+      <p class="s-desc">Если что-то осталось непонятным — напиши нам в Telegram.</p>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item open">
+        <div class="faq-trigger" onclick="toggleFaq(this)">
+          <span class="faq-q">Кому подходит мастер-класс?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-body">
+          Мастер-класс подходит тем, кто уже торгует, но стабильно теряет деньги — и не понимает почему. Также тем, кто только начинает и хочет с первых шагов выстроить правильную систему. Опыт — от 0 до 3 лет.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-trigger" onclick="toggleFaq(this)">
+          <span class="faq-q">Это онлайн или оффлайн?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-body">
+          Только оффлайн, живой формат. Horizont Balance Zal, ул. Куйбышева, 22, корп. 6, вход 2. Сбор с 11:40, старт в 12:00.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-trigger" onclick="toggleFaq(this)">
+          <span class="faq-q">Как участвовать в розыгрыше?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-body">
+          Купи билет на мастер-класс, подпишись на наш Telegram-канал и на канал KRIPTOROMM. 21 марта в 22:00 определим 3 победителей из числа купивших билеты.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-trigger" onclick="toggleFaq(this)">
+          <span class="faq-q">Будет ли запись мастер-класса?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-body">
+          Мастер-класс проходит в живом формате без записи — это часть его ценности. Разборы ситуаций из зала, вопросы в реальном времени, живое взаимодействие со спикером.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-trigger" onclick="toggleFaq(this)">
+          <span class="faq-q">Есть ли скидка для тех, кто был на #1?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-body">
+          Да. Если ты был на Крипто-Субботнике #1 — твоя цена 45 BYN вместо 50 BYN. Напиши нам при покупке.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-trigger" onclick="toggleFaq(this)">
+          <span class="faq-q">Как купить билет?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-body">
+          Нажми кнопку «Купить билет» на сайте или напиши напрямую в наш Telegram-канал. Мест ограниченное количество.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section id="cta-final">
+  <div class="cta-inner">
+    <div class="cta-bg"></div>
+    <div style="position:relative;z-index:2;">
+      <div class="cta-eyebrow">Осталось мало мест · 28 марта · Минск</div>
+      <h2 class="cta-title">ВОЙДИ В<br><span>10%</span></h2>
+      <p class="cta-sub">Живой мастер-класс с Романом Мартыненко. Всё что нужно знать о голове трейдера — в одном дне.</p>
+      <a href="#details" class="btn btn-accent" style="font-size:13px;padding:18px 40px;">ПРИСОЕДИНИТЬСЯ →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">KRIPTO<span>ROMM</span></div>
+  <div class="footer-copy">© 2026 KRIPTOROMM · Крипто-Субботник #2</div>
+  <div class="footer-links">
+    <a href="#">Telegram</a>
+    <a href="#">YouTube</a>
+    <a href="#">Instagram</a>
+  </div>
+</footer>
+
+<script>
+function toggleProg(trigger) {
+  const item = trigger.closest('.prog-item');
+  item.classList.toggle('open');
+}
+
+function toggleFaq(trigger) {
+  const item = trigger.closest('.faq-item');
+  item.classList.toggle('open');
+}
+</script>
+</body>
+</html>
