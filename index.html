@@ -632,7 +632,6 @@ section { border-bottom: 1px solid var(--border); }
 .gallery-item:hover img { transform: scale(1.04); }
 
 .gallery-tall { grid-row: span 2; }
-.gallery-wide { grid-column: span 1; }
 
 .reviews-grid {
   display: grid;
@@ -647,17 +646,62 @@ section { border-bottom: 1px solid var(--border); }
   transition: transform 0.2s;
 }
 .review-card:hover { transform: translateY(-3px); }
+.review-card img { display: block; width: 100%; height: auto; }
 
-.review-card img {
-  display: block;
-  width: 100%;
-  height: auto;
+/* ─── PARTNERS ─── */
+.partners-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.partner-card {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  background: var(--card);
+  text-decoration: none;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.partner-card:hover {
+  border-color: rgba(255,255,255,0.2);
+  transform: translateY(-2px);
+}
+
+.partner-logo {
+  height: 64px;
+  width: 64px;
+  object-fit: contain;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.partner-name {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.partner-desc {
+  font-size: 13px;
+  color: var(--muted2);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.partner-link {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
 }
 
 @media (max-width: 900px) {
-  .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 160px; }
-  .gallery-tall { grid-row: span 1; }
-  .reviews-grid { grid-template-columns: 1fr; }
+  .partners-grid { grid-template-columns: 1fr; }
 }
 
 /* ─── FAQ ─── */
@@ -758,6 +802,10 @@ footer {
   .pricing-grid { grid-template-columns: 1fr; }
   .speaker-block { grid-template-columns: 1fr; gap: 32px; }
   .speaker-stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 160px; }
+  .gallery-tall { grid-row: span 1; }
+  .reviews-grid { grid-template-columns: 1fr; }
+  .partners-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -806,22 +854,10 @@ footer {
         <div style="font-size:14px;color:var(--accent);font-weight:600;margin-bottom:24px;">@KRIPTOROMM</div>
         <p style="font-size:15px;color:var(--muted2);line-height:1.7;margin-bottom:36px;max-width:420px;">Инвестор и практикующий трейдер. Автор блога KRIPTOROMM</p>
         <div class="speaker-stats-grid">
-          <div class="stat-box">
-            <div class="stat-box-num">5+</div>
-            <div class="stat-box-label">лет в трейдинге</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-box-num">200+</div>
-            <div class="stat-box-label">учеников</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-box-num">43К</div>
-            <div class="stat-box-label">подписчиков</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-box-num">Live</div>
-            <div class="stat-box-label">формат</div>
-          </div>
+          <div class="stat-box"><div class="stat-box-num">5+</div><div class="stat-box-label">лет в трейдинге</div></div>
+          <div class="stat-box"><div class="stat-box-num">200+</div><div class="stat-box-label">учеников</div></div>
+          <div class="stat-box"><div class="stat-box-num">43К</div><div class="stat-box-label">подписчиков</div></div>
+          <div class="stat-box"><div class="stat-box-num">Live</div><div class="stat-box-label">формат</div></div>
         </div>
         <div class="speaker-socials">
           <a href="https://t.me/kriptoromm" target="_blank" class="social-btn">
@@ -842,7 +878,7 @@ footer {
   </div>
 </section>
 
-<!-- СОЦСЕТИ -->
+<!-- СОЦСЕТИ W3B -->
 <section id="socials" style="border-bottom: 1px solid var(--border);">
   <div style="max-width:1100px;margin:0 auto;padding:32px 40px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
     <img src="logo-w3b-icon.png" alt="W3B" style="height:32px;width:32px;object-fit:contain;">
@@ -861,9 +897,7 @@ footer {
 <section id="program">
   <div class="section-wrap">
     <div class="s-header">
-      <div>
-        <h2 class="s-title">ЧТО<br>РАЗБЕРЁМ</h2>
-      </div>
+      <div><h2 class="s-title">ЧТО<br>РАЗБЕРЁМ</h2></div>
       <p class="s-desc">Конкретные инструменты без воды. Живой разбор ситуаций прямо из зала.</p>
     </div>
     <div class="prog-accordion">
@@ -950,36 +984,16 @@ footer {
 <section id="pain">
   <div class="section-wrap">
     <div class="s-header">
-      <div>
-        <h2 class="s-title">ПОЧЕМУ 90%<br>ТЕРЯЮТ ДЕНЬГИ</h2>
-      </div>
+      <div><h2 class="s-title">ПОЧЕМУ 90%<br>ТЕРЯЮТ ДЕНЬГИ</h2></div>
       <p class="s-desc">Большинство сливают не потому что плохо читают графики. Одна жадная сделка перечёркивает месяц работы.</p>
     </div>
     <div class="pain-list">
-      <div class="pain-row">
-        <div class="pain-dot"></div>
-        <div class="pain-text"><strong>Грамотный анализ не спасает от слива</strong> — и ты не понимаешь почему</div>
-      </div>
-      <div class="pain-row">
-        <div class="pain-dot"></div>
-        <div class="pain-text"><strong>После нескольких стопов подряд</strong> — сливаешь всё что заработал за месяц</div>
-      </div>
-      <div class="pain-row">
-        <div class="pain-dot"></div>
-        <div class="pain-text"><strong>Считаешь убыточные сделки ошибками</strong> — и это мешает двигаться вперёд</div>
-      </div>
-      <div class="pain-row">
-        <div class="pain-dot"></div>
-        <div class="pain-text"><strong>Торгуешь на эмоциях</strong> — страх и жадность управляют позицией вместо тебя</div>
-      </div>
-      <div class="pain-row">
-        <div class="pain-dot"></div>
-        <div class="pain-text"><strong>Не знаешь — работает ли стратегия</strong> или ты просто надеешься на удачу</div>
-      </div>
-      <div class="pain-row">
-        <div class="pain-dot"></div>
-        <div class="pain-text"><strong>Не видишь где теряешь деньги</strong> — и теряешь снова и снова</div>
-      </div>
+      <div class="pain-row"><div class="pain-dot"></div><div class="pain-text"><strong>Грамотный анализ не спасает от слива</strong> — и ты не понимаешь почему</div></div>
+      <div class="pain-row"><div class="pain-dot"></div><div class="pain-text"><strong>После нескольких стопов подряд</strong> — сливаешь всё что заработал за месяц</div></div>
+      <div class="pain-row"><div class="pain-dot"></div><div class="pain-text"><strong>Считаешь убыточные сделки ошибками</strong> — и это мешает двигаться вперёд</div></div>
+      <div class="pain-row"><div class="pain-dot"></div><div class="pain-text"><strong>Торгуешь на эмоциях</strong> — страх и жадность управляют позицией вместо тебя</div></div>
+      <div class="pain-row"><div class="pain-dot"></div><div class="pain-text"><strong>Не знаешь — работает ли стратегия</strong> или ты просто надеешься на удачу</div></div>
+      <div class="pain-row"><div class="pain-dot"></div><div class="pain-text"><strong>Не видишь где теряешь деньги</strong> — и теряешь снова и снова</div></div>
     </div>
   </div>
 </section>
@@ -1035,12 +1049,11 @@ footer {
   </div>
 </section>
 
+<!-- DETAILS -->
 <section id="details">
   <div class="section-wrap">
     <div class="s-header">
-      <div>
-        <h2 class="s-title">КОГДА<br>И ГДЕ</h2>
-      </div>
+      <div><h2 class="s-title">КОГДА<br>И ГДЕ</h2></div>
       <p class="s-desc">Живой оффлайн-формат. Вопросы в зале. Разбор ваших реальных ситуаций.</p>
     </div>
     <div class="details-grid">
@@ -1065,69 +1078,37 @@ footer {
         <div class="detail-cell-value">Живой оффлайн<br>Вопросы из зала</div>
       </div>
     </div>
-<!-- GALLERY & REVIEWS -->
-<section id="gallery">
-  <div class="section-wrap">
-    <div class="s-header">
-      <div>
-        <h2 class="s-title">КАК ЭТО<br>БЫЛО</h2>
-      </div>
-      <p class="s-desc">Фотографии и отзывы с Крипто-Субботника #1</p>
-    </div>
 
-    <div class="gallery-grid">
-      <div class="gallery-item gallery-tall">
-        <img src="gallery-1.jpg" alt="">
+    <!-- GALLERY & REVIEWS -->
+    <section id="gallery" style="border-bottom:none;margin:0 -40px;padding:0 40px;">
+      <div style="padding-top:80px;">
+        <div class="s-header">
+          <div><h2 class="s-title">КАК ЭТО<br>БЫЛО</h2></div>
+          <p class="s-desc">Фотографии и отзывы с Крипто-Субботника #1</p>
+        </div>
+        <div class="gallery-grid">
+          <div class="gallery-item gallery-tall"><img src="gallery-1.jpg" alt=""></div>
+          <div class="gallery-item"><img src="gallery-2.jpg" alt=""></div>
+          <div class="gallery-item"><img src="gallery-3.jpg" alt=""></div>
+          <div class="gallery-item gallery-tall"><img src="gallery-4.jpg" alt=""></div>
+          <div class="gallery-item"><img src="gallery-5.jpg" alt=""></div>
+          <div class="gallery-item"><img src="gallery-6.jpg" alt=""></div>
+          <div class="gallery-item"><img src="gallery-9.jpg" alt=""></div>
+          <div class="gallery-item gallery-tall"><img src="gallery-10.jpg" alt=""></div>
+          <div class="gallery-item"><img src="gallery-11.jpg" alt="" style="object-position:center 30%;"></div>
+          <div class="gallery-item"><img src="gallery-12.jpg" alt=""></div>
+        </div>
+        <h3 style="font-family:'Unbounded',sans-serif;font-size:clamp(20px,3vw,32px);font-weight:800;letter-spacing:-0.02em;margin:60px 0 32px;">ОТЗЫВЫ УЧАСТНИКОВ</h3>
+        <div class="reviews-grid">
+          <div class="review-card"><img src="gallery-7.jpg" alt="Отзыв участника"></div>
+          <div class="review-card"><img src="gallery-8.jpg" alt="Отзыв участника"></div>
+          <div class="review-card"><img src="review-2.jpg" alt="Отзыв участника"></div>
+          <div class="review-card"><img src="review-3.jpg" alt="Отзыв участника"></div>
+        </div>
       </div>
-      <div class="gallery-item">
-        <img src="gallery-2.jpg" alt="">
-      </div>
-      <div class="gallery-item">
-        <img src="gallery-3.jpg" alt="">
-      </div>
-      <div class="gallery-item gallery-tall">
-        <img src="gallery-4.jpg" alt="">
-      </div>
-      <div class="gallery-item">
-        <img src="gallery-5.jpg" alt="">
-      </div>
-      <div class="gallery-item">
-        <img src="gallery-6.jpg" alt="">
-      </div>
-      <div class="gallery-item">
-        <img src="gallery-9.jpg" alt="">
-      </div>
-      <div class="gallery-item gallery-tall">
-        <img src="gallery-10.jpg" alt="">
-      </div>
-      <div class="gallery-item">
-        <img src="gallery-11.jpg" alt="" style="object-position: center 30%;">
-      </div>
-      <div class="gallery-item">
-        <img src="gallery-12.jpg" alt="">
-      </div>
-    </div>
+    </section>
 
-    <h3 style="font-family:'Unbounded',sans-serif;font-size:clamp(20px,3vw,32px);font-weight:800;letter-spacing:-0.02em;margin:60px 0 32px;">ОТЗЫВЫ УЧАСТНИКОВ</h3>
-
-    <div class="reviews-grid">
-      <div class="review-card">
-        <img src="gallery-7.jpg" alt="Отзыв участника">
-      </div>
-      <div class="review-card">
-        <img src="gallery-8.jpg" alt="Отзыв участника">
-      </div>
-      <div class="review-card">
-        <img src="review-2.jpg" alt="Отзыв участника">
-      </div>
-      <div class="review-card">
-        <img src="review-3.jpg" alt="Отзыв участника">
-      </div>
-    </div>
-  </div>
-</section>
-
-    <div id="tickets"></div>
+    <div id="tickets" style="padding-top:80px;"></div>
     <h3 style="font-family:'Unbounded',sans-serif;font-size:clamp(22px,3vw,36px);font-weight:800;letter-spacing:-0.02em;margin-bottom:24px;">ВЫБЕРИ СВОЙ БИЛЕТ</h3>
     <div class="pricing-grid">
       <div class="pricing-card">
@@ -1147,56 +1128,64 @@ footer {
   </div>
 </section>
 
+<!-- PARTNERS -->
+<section id="partners">
+  <div class="section-wrap">
+    <div class="s-header">
+      <div><h2 class="s-title">ПАРТНЁРЫ</h2></div>
+      <p class="s-desc">Специальные условия для участников Крипто-Субботника</p>
+    </div>
+    <div class="partners-grid">
+      <a href="https://www.mexc.com/acquisition/custom-sign-up?shareCode=mexc-12BoHD" target="_blank" class="partner-card">
+        <img src="logo-mexc.png" alt="MEXC" class="partner-logo">
+        <div>
+          <div class="partner-name">MEXC</div>
+          <div class="partner-desc">Одна из крупнейших криптовалютных бирж. Бонусы и эксклюзивные условия для участников</div>
+          <div class="partner-link">Зарегистрироваться →</div>
+        </div>
+      </a>
+      <a href="https://hashhedge.com/?fpr=andrey33" target="_blank" class="partner-card">
+        <img src="logo-hashhedge.png" alt="Hash Hedge" class="partner-logo">
+        <div>
+          <div class="partner-name">Hash Hedge</div>
+          <div class="partner-desc">Проп-трейдинговая платформа. Специальные условия для участников мастер-класса</div>
+          <div class="partner-link">Узнать подробнее →</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- FAQ -->
 <section id="faq">
   <div class="section-wrap">
     <div class="s-header">
-      <div>
-        <h2 class="s-title">ЧАСТЫЕ<br>ВОПРОСЫ</h2>
-      </div>
+      <div><h2 class="s-title">ЧАСТЫЕ<br>ВОПРОСЫ</h2></div>
       <p class="s-desc">Если что-то осталось непонятным — напиши нам в <a href="https://t.me/andrey_proup" target="_blank" style="color:var(--accent);text-decoration:none;font-weight:600;">Telegram →</a></p>
     </div>
     <div class="faq-list">
       <div class="faq-item open">
-        <div class="faq-trigger" onclick="toggleFaq(this)">
-          <span class="faq-q">Кому подходит мастер-класс?</span>
-          <span class="faq-icon">+</span>
-        </div>
+        <div class="faq-trigger" onclick="toggleFaq(this)"><span class="faq-q">Кому подходит мастер-класс?</span><span class="faq-icon">+</span></div>
         <div class="faq-body">Мастер-класс подходит тем, кто уже торгует, но стабильно теряет деньги — и не понимает почему. Также тем, кто только начинает и хочет с первых шагов выстроить правильную систему. Опыт — от 0 до 3 лет.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-trigger" onclick="toggleFaq(this)">
-          <span class="faq-q">Это онлайн или оффлайн?</span>
-          <span class="faq-icon">+</span>
-        </div>
+        <div class="faq-trigger" onclick="toggleFaq(this)"><span class="faq-q">Это онлайн или оффлайн?</span><span class="faq-icon">+</span></div>
         <div class="faq-body">Только оффлайн, живой формат. Horizont Balance Zal, ул. Куйбышева, 22, корп. 6, вход 2. Сбор с 11:40, старт в 12:00.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-trigger" onclick="toggleFaq(this)">
-          <span class="faq-q">Как участвовать в розыгрыше?</span>
-          <span class="faq-icon">+</span>
-        </div>
+        <div class="faq-trigger" onclick="toggleFaq(this)"><span class="faq-q">Как участвовать в розыгрыше?</span><span class="faq-icon">+</span></div>
         <div class="faq-body">Купи билет на мастер-класс, подпишись на наш <a href="https://t.me/W3Belarus" target="_blank" style="color:var(--accent);text-decoration:none;font-weight:600;">Telegram-канал</a> и на канал <a href="https://t.me/kriptoromm" target="_blank" style="color:var(--accent);text-decoration:none;font-weight:600;">KRIPTOROMM</a>. Определим онлайн 21.03 в 22:00 в канале W3B.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-trigger" onclick="toggleFaq(this)">
-          <span class="faq-q">Будет ли запись мастер-класса?</span>
-          <span class="faq-icon">+</span>
-        </div>
+        <div class="faq-trigger" onclick="toggleFaq(this)"><span class="faq-q">Будет ли запись мастер-класса?</span><span class="faq-icon">+</span></div>
         <div class="faq-body">Мастер-класс проходит в живом формате без записи — это часть его ценности. Разборы ситуаций из зала, вопросы в реальном времени, живое взаимодействие со спикером.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-trigger" onclick="toggleFaq(this)">
-          <span class="faq-q">Есть ли скидка для тех, кто был на Крипто-Субботнике #1?</span>
-          <span class="faq-icon">+</span>
-        </div>
+        <div class="faq-trigger" onclick="toggleFaq(this)"><span class="faq-q">Есть ли скидка для тех, кто был на Крипто-Субботнике #1?</span><span class="faq-icon">+</span></div>
         <div class="faq-body">Да. Если ты был на Крипто-Субботнике #1 — твоя скидка 5 BYN. Напиши нам при покупке.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-trigger" onclick="toggleFaq(this)">
-          <span class="faq-q">Как купить билет?</span>
-          <span class="faq-icon">+</span>
-        </div>
+        <div class="faq-trigger" onclick="toggleFaq(this)"><span class="faq-q">Как купить билет?</span><span class="faq-icon">+</span></div>
         <div class="faq-body">Нажми кнопку «Принять участие» на сайте — она ведёт на страницу покупки. Мест ограниченное количество.</div>
       </div>
     </div>
@@ -1223,15 +1212,15 @@ footer {
   <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-end;">
     <div style="display:flex;align-items:center;gap:12px;">
       <span style="font-size:11px;color:var(--muted);font-weight:500;">KRIPTOROMM</span>
-      <a href="https://t.me/kriptoromm" target="_blank" class="footer-links" style="display:inline-flex;align-items:center;gap:6px;color:var(--muted);text-decoration:none;font-size:12px;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">
+      <a href="https://t.me/kriptoromm" target="_blank" style="display:inline-flex;align-items:center;gap:6px;color:var(--muted);text-decoration:none;font-size:12px;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.32 13.617l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.828.942z"/></svg>
         Telegram
       </a>
-      <a href="https://www.youtube.com/@KRIPTOROMM" target="_blank" style="display:inline-flex;align-items:center;gap:6px;color:var(--muted);text-decoration:none;font-size:12px;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">
+      <a href="https://www.youtube.com/@KRIPTOROMM" target="_blank" style="display:inline-flex;align-items:center;gap:6px;color:var(--muted);text-decoration:none;font-size:12px;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
         YouTube
       </a>
-      <a href="https://www.instagram.com/kriptoromm" target="_blank" style="display:inline-flex;align-items:center;gap:6px;color:var(--muted);text-decoration:none;font-size:12px;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">
+      <a href="https://www.instagram.com/kriptoromm" target="_blank" style="display:inline-flex;align-items:center;gap:6px;color:var(--muted);text-decoration:none;font-size:12px;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
         Instagram
       </a>
@@ -1239,11 +1228,11 @@ footer {
     <div style="display:flex;align-items:center;gap:12px;">
       <img src="logo-w3b-icon.png" alt="W3B" style="height:20px;width:20px;object-fit:contain;">
       <span style="font-size:11px;color:var(--muted);font-weight:500;">W3B Community</span>
-      <a href="https://t.me/W3Belarus" target="_blank" style="display:inline-flex;align-items:center;gap:6px;color:var(--muted);text-decoration:none;font-size:12px;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">
+      <a href="https://t.me/W3Belarus" target="_blank" style="display:inline-flex;align-items:center;gap:6px;color:var(--muted);text-decoration:none;font-size:12px;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.32 13.617l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.828.942z"/></svg>
         Telegram
       </a>
-      <a href="https://www.instagram.com/w3belarus?igsh=b2M2dzcxenphc2lq" target="_blank" style="display:inline-flex;align-items:center;gap:6px;color:var(--muted);text-decoration:none;font-size:12px;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">
+      <a href="https://www.instagram.com/w3belarus?igsh=b2M2dzcxenphc2lq" target="_blank" style="display:inline-flex;align-items:center;gap:6px;color:var(--muted);text-decoration:none;font-size:12px;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
         Instagram
       </a>
